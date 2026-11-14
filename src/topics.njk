@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: Topics
+description: What I keep coming back to.
+permalink: /topics/
+eleventyExcludeFromCollections: true
+---
+<div class="wrap">
+  <header class="page-header">
+    <h1>Topics</h1>
+  </header>
+  <ul class="topic-list">
+    {%- for topic in collections.topics %}
+    <li>
+      <a href="/topics/{{ topic.slug }}/">{{ topic.name }}</a>
+      <span class="count">{{ topic.posts.length }}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>

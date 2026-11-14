@@ -1,0 +1,19 @@
+{
+  "title": "Ethan's Essays",
+  "tagline": "Notes on technology, business, entertainment, and the values beneath them.",
+  "description": "Essays on technology, business, and entertainment.",
+  "url": "https://etguinn.github.io",
+  "author": {
+    "name": "Ethan Guinn",
+    "email": "et.guinn@gmail.com"
+  },
+  "nav": [
+    { "label": "Writing", "url": "/" },
+    { "label": "Topics", "url": "/topics/" },
+    { "label": "Archive", "url": "/archive/" },
+    { "label": "About", "url": "/about/" }
+  ],
+  "links": [
+    { "label": "RSS", "url": "/feed.xml" }
+  ]
+}

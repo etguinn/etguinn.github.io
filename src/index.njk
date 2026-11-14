@@ -1,0 +1,43 @@
+---
+layout: base.njk
+eleventyExcludeFromCollections: true
+---
+<div class="wrap">
+{%- if collections.posts.length %}
+{%- if collections.topics.length %}
+<section class="tag-filter" data-tag-filter hidden aria-label="Filter posts by tag">
+  <div class="tag-filter-head">
+    <span class="tag-filter-label">Filter by tag</span>
+    <div class="tag-filter-mode" role="group" aria-label="Match mode">
+      <button type="button" data-mode="any" aria-pressed="true">Any</button>
+      <button type="button" data-mode="all" aria-pressed="false">All</button>
+    </div>
+    <button type="button" class="tag-filter-clear" data-clear hidden>Clear</button>
+  </div>
+  <div class="tag-chips">
+    {%- for topic in collections.topics %}
+    <button type="button" class="tag-chip" data-tag="{{ topic.slug }}" aria-pressed="false">{{ topic.name }} <span class="count">{{ topic.posts.length }}</span></button>
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+<ul class="post-list" data-post-list>
+  {%- for post in collections.posts %}
+  {%- set tags = (post.data.topics or post.data.topic) | topicList %}
+  <li class="post-list-item" data-tags="{% for t in tags %}{{ t | slug }}{% if not loop.last %} {% endif %}{% endfor %}">
+    <p class="meta">
+      <time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time>
+      {%- if tags.length %} <span class="dot">·</span> {% for t in tags %}<a class="topic" href="/topics/{{ t | slug }}/">{{ t }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
+      {%- if post.data.draft %} <span class="badge">Draft</span>{% endif %}
+    </p>
+    <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+    {%- if post.data.description %}<p class="dek">{{ post.data.description }}</p>{% endif %}
+  </li>
+  {%- endfor %}
+</ul>
+<p class="tag-filter-empty" data-filter-empty hidden>No posts match those tags.</p>
+<script src="/js/tag-filter.js" defer></script>
+{%- else %}
+<p class="empty">No posts yet. Run <code>npm run new "Your first title"</code> to start one.</p>
+{%- endif %}
+</div>

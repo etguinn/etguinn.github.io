@@ -1,0 +1,30 @@
+---
+layout: base.njk
+---
+<article class="post wrap">
+  <header class="post-header">
+    <p class="meta">
+      <time datetime="{{ page.date | htmlDate }}">{{ page.date | readableDate }}</time>
+      {%- set tags = (topics or topic) | topicList %}
+      {%- if tags.length %} <span class="dot">·</span> {% for t in tags %}<a class="topic" href="/topics/{{ t | slug }}/">{{ t }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
+      {%- if draft %} <span class="badge">Draft</span>{% endif %}
+    </p>
+    <h1>{{ title }}</h1>
+    {%- if description %}<p class="post-standfirst">{{ description }}</p>{% endif %}
+  </header>
+
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+</article>
+
+<nav class="post-nav wrap" aria-label="More writing">
+  {%- for post in collections.posts -%}
+    {%- if post.url == page.url -%}
+      {%- set prev = collections.posts[loop.index0 + 1] -%}
+      {%- set next = collections.posts[loop.index0 - 1] if loop.index0 > 0 else null -%}
+      {%- if next %}<a class="post-nav-link" href="{{ next.url }}"><span>Newer</span>{{ next.data.title }}</a>{% endif -%}
+      {%- if prev %}<a class="post-nav-link align-end" href="{{ prev.url }}"><span>Older</span>{{ prev.data.title }}</a>{% endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+</nav>
