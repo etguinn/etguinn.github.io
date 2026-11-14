@@ -11,56 +11,9 @@ No database, no server, no admin login, no third-party scripts.
 
 ## One-time setup (~10 minutes)
 
-### 1. Put your name on it
-
-Open `src/_data/site.json` and replace every `CHANGE ME`. This one file
-controls the header, footer, page titles, RSS feed, and social previews.
-
-```json
-{
-  "title": "Elliott Guinn",
-  "tagline": "Notes on film, technology, and the values underneath both.",
-  "url": "https://YOUR-USERNAME.github.io"
-}
-```
-
-The `url` must be exact — it's what builds the RSS feed and sitemap links.
-
-### 2. Preview it locally
-
 ```bash
 npm install          # only needed once
 npm run dev          # http://localhost:8080 — saves reload instantly
-```
-
-### 3. Tell Git who you are
-
-You don't have this set yet:
-
-```bash
-git config --global user.name "Ethan Guinn"
-git config --global user.email "et.guinn@gmail.com"
-```
-
-### 4. Create the repository
-
-On GitHub, create a **public, empty** repository named exactly:
-
-```
-YOUR-USERNAME.github.io
-```
-
-That exact name is what makes the site serve from the root of your domain.
-Don't let GitHub add a README or .gitignore — this folder already has them.
-
-### 5. Push
-
-```bash
-git init -b main
-git add .
-git commit -m "Initial site"
-git remote add origin https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io.git
-git push -u origin main
 ```
 
 ### 6. Turn on Pages — the one step people miss
